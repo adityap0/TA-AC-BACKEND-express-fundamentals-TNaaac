@@ -1,8 +1,18 @@
 let express = require("express");
+var logger = require("morgan");
+var cookieParser = require("cookie-parser");
 var app = express();
 
+app.use(logger("dev"));
+app.use(cookieParser());
+
 app.use((req, res, next) => {
-  console.log(`Hey this is the middleWare`);
+  var count = req.cookies.count;
+  if (count) {
+    res.cookie("count", count++);
+  } else {
+    res.cookie("count", 1);
+  }
   next();
 });
 
