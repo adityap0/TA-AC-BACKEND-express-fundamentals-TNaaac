@@ -16,6 +16,11 @@ var app = express();
 app.use(cookieParser());
 app.use("/about", (req, res, next) => {
   res.cookie("username", "suraj");
+  res.end(`About End!`);
+  next();
+});
+app.use((req, res, next) => {
+  console.log(req.cookie);
   next();
 });
 app.use(logger("dev"));
