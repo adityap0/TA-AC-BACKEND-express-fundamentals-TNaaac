@@ -23,6 +23,7 @@ app.get("/users", (req, res) => {
 });
 app.get("/users/:username", (req, res) => {
   var username = req.params.username;
+  res.send();
 });
 
 app.post("/json", (req, res) => {
