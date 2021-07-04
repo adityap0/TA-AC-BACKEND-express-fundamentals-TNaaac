@@ -8,9 +8,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(logger("dev"));
 app.use(cookieParser());
-// app.use((req, res, next) => {
-//   next(`UnAuthorised`);
-// });
 
 app.get("/", (req, res) => {
   res.cookie("session_id", "1234");
@@ -33,9 +30,9 @@ app.post("/form", (req, res) => {
 app.use((req, res) => {
   res.send(`404, not found`);
 });
-// app.use((err, req, res, next) => {
-//   res.send(err);
-// });
+app.use((err, req, res, next) => {
+  res.send(err);
+});
 
 app.listen(3000, () => {
   console.log("On server 3000...");
