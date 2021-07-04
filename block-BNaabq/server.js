@@ -1,13 +1,3 @@
-// - add cookie with key as `username` and value as your username.
-
-// For example:-
-
-// ```js
-// res.cookie("username", "suraj");
-// ```
-
-// 2. Fetch all cookies from request in next middleware.
-
 let express = require("express");
 let logger = require("morgan");
 let cookieParser = require("cookie-parser");
@@ -28,8 +18,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/public"));
 
-app.get("/about", (req, res) => {
+app.get("/users", (req, res) => {
   res.sendFile(__dirname + "/index.html");
+});
+app.get("/users/:username", (req, res) => {
+  var username = req.params.username;
+  res.send();
 });
 
 app.post("/json", (req, res) => {
