@@ -15,9 +15,9 @@ let app = express();
 //middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use((req, res) => {
-  next("unauthorised");
-});
+// app.use((req, res) => {
+//   next("unauthorised");
+// });
 app.use(express.static("public"));
 app.use(logger());
 app.use(cookieParser());
@@ -25,7 +25,6 @@ app.use(cookieParser());
 //routes
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
-  res.send("Hey this is index route");
 });
 app.get("/users", (req, res) => {
   res.send("Hey this is users route");
